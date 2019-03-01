@@ -20,7 +20,7 @@ export default {
       cacheMedia: false,
       cachingAttachments: [],
       goHomeTimeout: null,
-      towns: ['安亭镇', '嘉定新城（马陆镇）', '南翔镇', '江桥镇', '徐行镇', '外冈镇', '华亭镇', '嘉定镇街道', '新成路街道', '真新街道', '嘉定工业区', '菊园新区']
+      towns: ['春光村']
     }
   },
   methods:{

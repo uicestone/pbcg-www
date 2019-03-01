@@ -16,7 +16,7 @@
           </div>
           <div class="fr city-weather" style="display: flex; align-items: center">
             <div>
-              <div class="city">嘉定，上海</div>
+              <div class="city">普陀，上海</div>
               <div class="weather">
                 <span class="text">{{weather.text}}</span>
                 <span class="wendu">{{weather.temperature}}℃</span>
@@ -199,9 +199,9 @@
           </ul>
           <div class="text">
             <h3>联系我们</h3>
-            <p><span><i class="fa fa-map-marker"></i>嘉定区·洪德楼：</span>嘉定区洪德路50号（近沪宜公路）</p>
-            <p><span><i class="fa fa-bus"></i>周边公交：</span>嘉定9路、嘉定14路、沪唐专线、嘉定64路（洪德路沪宜公路站）</p>
-            <p><span><i class="fa fa-phone"></i>联系电话：</span>021-59107253</p>
+            <p><span><i class="fa fa-map-marker"></i>春光村党建服务站：</span></p>
+            <p><span><i class="fa fa-bus"></i>周边公交：</span></p>
+            <p><span><i class="fa fa-phone"></i>联系电话：</span></p>
           </div>
         </div>
         <Modal

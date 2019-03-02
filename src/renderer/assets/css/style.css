@@ -73,7 +73,7 @@ input {
   top: 0.7rem;
   left: 0.6rem;
   right: 0.6rem;
-  color: #690000;
+  color: #fff;
   overflow: hidden;
   font-weight: bold;
 }
@@ -109,12 +109,12 @@ input {
 
 .page3 .main-con {
   padding: 0 0.6rem 0 0.35rem;
-  margin-top: 0.6rem;
+  /*margin-top: 0.6rem;*/
 }
 
 .page3 .main-con1 {
   overflow: hidden;
-  margin-top: 0.30rem;
+  margin-top: 0.25rem;
 }
 
 .page3 .main-con1 .leftDiv {
@@ -122,7 +122,7 @@ input {
 }
 
 .page3 .main-con1 .leftDiv .baodao {
-  background: url(../images/index/baodao.png) no-repeat -0.05rem top;
+  background: url(../images/index/baodao.png) no-repeat -0.08rem top;
   background-size: 104%;
   color: #fff;
   height: 3.45rem;
@@ -170,7 +170,7 @@ input {
   background: #93288d;
   margin: 0 auto;
   line-height: 0.79rem;
-  box-shadow: 0px 0px 0.2rem 0.05rem #a7a6a7;
+  box-shadow: #a7a6a7 0px 0.1rem 0.2rem;
 }
 
 .page3 .shici img {
@@ -244,7 +244,7 @@ input {
 }
 
 .page3 .dt-list ul li {
-  background: #f9afa1;
+  background: #efb849;
   overflow: hidden;
   height: 0.48rem;
   line-height: 0.48rem;
@@ -290,84 +290,47 @@ input {
   overflow: hidden;
   margin-top: 0.1rem;
   /*padding-top: 0.25rem;*/
-  height: 3.82rem;
+  height: 3.3rem;
 }
 
-.main-con2 .leftDiv {
-  width: 3.45rem;
+.main-con2 .quntuan {
+  /*width: 3.45rem;*/
 }
 
-.page3 .leftDiv .fczs {
+.page3 .quntuan .qtzs {
   width: 3.05rem;
-  height: 3.44rem;
+  height: 3.1rem;
   margin: 0 auto;
-  background: #b6302c;
+  background: #da5e2d;
   padding: 0.2rem 0.17rem;
-  box-shadow: 0px 0px 0.2rem 0.05rem #a7a6a7;
+  box-shadow: #a7a6a7 0px 0.1rem 0.2rem;
 }
 
-.page3 .leftDiv .fczs .fczs-title {
+.page3 .quntuan .qtzs .qtzs-title {
   font-size: 0.3rem;
   color: #fff;
   height: 0.5rem;
   font-weight: bold;
 }
 
-.page3 .leftDiv .fczs .fczs-title img {
+.page3 .quntuan .qtzs .qtzs-title img {
   display: inline-block;
   width: 0.45rem;
   margin-right: 0.15rem;
   margin-left: 0.1rem;
 }
 
-.page3 .leftDiv .fczs .fczs-title span {
+.page3 .quntuan .qtzs .qtzs-title span {
   position: relative;
   top: -0.17rem;
-}
-
-.page3 .fczs .lunbo .img {
-  margin: 0.2rem 0;
-  width: 100%;
-}
-
-.page3 .lb-page {
-  overflow: hidden;
-  margin: 0 auto;
-}
-
-.page3 .lb-page ul {
-  overflow: hidden;
-  padding-left: 0.18rem;
-}
-
-.page3 .lb-page ul li {
-  float: left;
-  height: 0.29rem;
-  margin-left: 0.2rem;
-}
-
-.page3 .lb-page ul li img {
-  width: 0.29rem;
-}
-
-.page3 .lb-page ul li span {
-  width: 0.1rem;
-  height: 0.1rem;
-  display: block;
-  background: #b397c8;
-  border-radius: 50%;
-  position: relative;
-  top: 0.12rem;
-}
-
-.page3 .lb-page ul li.active span {
-  background: #fff;
 }
 
 .page3 .main-con2 .caidan {
   display: flex;
   width: 6.35rem;
-  height: 3.43rem;
+  height: 3.1rem;
+  margin-left: 0.2rem;
+  box-shadow: #a7a6a7 0px 0.1rem 0.2rem;
 }
 
 .page3 .main-con2 .caidan .yuedu {
@@ -376,7 +339,7 @@ input {
   width: 2.31rem;
   padding: 0.2rem 0.2rem;
   text-align: center;
-  height: 3.43rem;
+  height: 3.1rem;
   position: relative;
 }
 
@@ -399,7 +362,7 @@ input {
 .page3 .caidan .yuedu .yue-num {
   font-size: 0.3rem;
   text-align: center;
-  margin-top: 0.2rem;
+  margin-top: 0.1rem;
   margin-bottom: 0.65rem;
   padding-left: 0.2rem;
   font-weight: bold;
@@ -445,7 +408,7 @@ input {
   background: #770506;
   padding: 0.02rem 0.2rem 0.07rem;
   width: 4.04rem;
-  height: 3.43rem;
+  height: 3.1rem;
 }
 
 .page3 .caidan .cd-list ul li {
@@ -501,10 +464,19 @@ input {
 
 .page3 .main-con3 {
   overflow: hidden;
-  width: 101%;
+  width: 101.6%;
   /*margin-top: 0.3rem;*/
+  white-space: nowrap;
 }
 
+.page3 .main-con3 .left {
+  width: 67%;
+  float: left;
+}
+.page3 .main-con3 .right {
+  width: 33%;
+  float: right;
+}
 .page3 .main-con3 ul {
   overflow: hidden;
   width: 101%;
@@ -518,17 +490,17 @@ input {
   margin-bottom: 0.2rem;
 }
 
-.page3 .main-con3 ul li div {
+.page3 .main-con3 ul li>div {
   width: 3.05rem;
   margin: 0 auto;
-  box-shadow: 0px 0.1rem 0.2rem #a7a6a7;
+  box-shadow: #a7a6a7 0px 0.1rem 0.2rem;
   height: 2.2rem;
   text-align: center;
   font-size: 0.3rem;
   color: #fff;
 }
 
-.page3 .main-con3 ul li div img {
+.page3 .main-con3 ul li div>img {
   margin: 0 auto;
   padding-top: 0.3rem;
   margin-bottom: 0.2rem;
@@ -550,7 +522,7 @@ input {
 }
 
 .page3 .main-con3 ul li.li1 div {
-  background: #87237f;
+  background: #e79b31;
 }
 
 .page3 .main-con3 ul li.li2 {
@@ -560,7 +532,7 @@ input {
 }
 
 .page3 .main-con3 ul li.li2 div {
-  background: #e79b32;
+  background: #de7341;
 }
 
 .page3 .main-con3 ul li.li3 {
@@ -576,7 +548,7 @@ input {
 }
 
 .page3 .main-con3 ul li.li4 div {
-  background: #da5f2d;
+  background: #d95e56;
 }
 
 .page3 .main-con3 ul li.li5 {
@@ -585,15 +557,20 @@ input {
 }
 
 .page3 .main-con3 ul li.li5 div {
-  background: #efb84a;
+  background: #d42f28;
 }
 
 .page3 .main-con3 ul li.li6 {
   float: right;
 }
 
-.page3 .main-con3 ul li.li6 div {
-  background: #d42f29;
+.page3 .main-con3 ul li.li6>div {
+  background: #b52f2c;
+  height: 4.6rem;
+}
+
+.page3 .main-con3 ul li.li6 .lunbo {
+  margin-top: 0.25rem;
 }
 
 .page3 .main-con3 ul li.li7 {
@@ -626,6 +603,7 @@ input {
   color: black;
   padding: 0.1rem 0.3rem 0.23rem;
   line-height: 0.4rem;
+  clear: both;
 }
 
 .page3 .main-con3 .text p {
@@ -643,6 +621,65 @@ input {
 
 .page3 .main-con3 .text p span {
   color: #888;
+}
+
+.page3 .lunbo {
+  height: 2.4rem;
+  position: relative;
+}
+
+.page3 .lunbo .img {
+  margin: 0.2rem 0;
+  width: 100%;
+}
+
+.page3 .lb-page {
+  overflow: hidden;
+  margin: 0 auto;
+  overflow: hidden;
+  margin: 0 auto;
+  bottom: 0.15rem;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.page3 .lb-page ul {
+  overflow: hidden;
+  display: inline-block;
+  width: auto;
+  padding-bottom: 0 !important;
+}
+
+.page3 .lb-page ul li {
+  float: left;
+  height: 0.29rem;
+  margin-left: 0.2rem;
+  margin-bottom: 0 !important;
+  display: list-item;
+  width: auto;
+}
+
+.page3 .lb-page ul li:first-child {
+  margin-left: 0;
+}
+
+.page3 .lb-page ul li img {
+  width: 0.29rem;
+}
+
+.page3 .lb-page ul li span {
+  width: 0.1rem;
+  height: 0.1rem;
+  display: block;
+  background: #b397c8;
+  border-radius: 50%;
+  position: relative;
+  top: 0.12rem;
+}
+
+.page3 .lb-page ul li.active span {
+  background: #fff;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {

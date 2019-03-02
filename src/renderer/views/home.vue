@@ -3,7 +3,7 @@
     <div class="main page3">
       <a @click="back" class="fl back"><i class="fa fa-chevron-left"></i> 返回</a>
       <div class="topDiv">
-        <img src="~@/assets/images/index/banner-no-logo.png" width="100%">
+        <img :src="bannerPost.posterUrl" width="100%">
         <div class="top-text">
           <div class="fl dateDiv">
             <div class="ymd">{{date.ll}} {{date.dddd}}</div>
@@ -16,7 +16,7 @@
           </div>
           <div class="fr city-weather" style="display: flex; align-items: center">
             <div>
-              <div class="city">普陀，上海</div>
+              <div class="city">普陀区，桃浦镇，春光村，上海</div>
               <div class="weather">
                 <span class="text">{{weather.text}}</span>
                 <span class="wendu">{{weather.temperature}}℃</span>
@@ -31,7 +31,7 @@
           <div class="fl leftDiv">
             <div class="baodao" @click="goToSignIn">
               <div class="num">
-                <span class="baodaorenshu">微信报到人数</span>
+                <span class="baodaorenshu">报到人数</span>
                 <span class="f69">{{ signedInMemberCount }}</span>
                 <span class="f35">人</span>
               </div>
@@ -69,27 +69,7 @@
           </div>
         </div>
         <div class="main-con2">
-          <div class="fl leftDiv">
-            <div class="fczs">
-              <div class="fczs-title" @click="$router.push('/fengcai')"><img src="~@/assets/images/index/fengcai.png"/><span>风采展示</span></div>
-              <div class="lunbo">
-                <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
-                <swiper :options="swiperOption" ref="GongyixingSwiper" @slideChange="onSlideChange('GongyixingSwiper')">
-                  <swiper-slide v-for="(item,index) in gonyixingList" :key="index">
-                    <img class="img" :src="item.url" width="100%" height="100%" @click="$router.push('/fengcai')">
-                  </swiper-slide>
-                </swiper>
-                <div class="lb-page">
-                  <ul>
-                    <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('GongyixingSwiper')"/></li>
-                      <li v-for="(item,index) in gonyixingList" :class="{active: currenGongyixingIndex == index}" :key="index"><span></span></li>                   
-                    <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('GongyixingSwiper')"/></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="fr caidan" @click="$router.push('/caidan')">
+          <div class="fl caidan" @click="$router.push('/caidan')">
             <div class="fl yuedu">
               <div class="yue-top">
                 <img src="~@/assets/images/index/caidan.png"/><span>月度菜单</span>
@@ -121,86 +101,95 @@
               
             </div>
           </div>
+          <div class="fr quntuan">
+            <div class="qtzs">
+              <div class="qtzs-title" @click="$router.push('/fengcai')"><img src="~@/assets/images/index/fengcai.png"/><span>群团展示</span></div>
+              <div class="lunbo">
+                <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
+                <swiper :options="swiperOption" ref="GongyixingSwiper" @slideChange="onSlideChange('GongyixingSwiper')">
+                  <swiper-slide v-for="(item,index) in gonyixingList" :key="index">
+                    <img class="img" :src="item.url" width="100%" height="100%" @click="$router.push('/fengcai')">
+                  </swiper-slide>
+                </swiper>
+                <div class="lb-page">
+                  <ul>
+                    <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('GongyixingSwiper')"/></li>
+                      <li v-for="(item,index) in gonyixingList" :class="{active: currenGongyixingIndex == index}" :key="index"><span></span></li>                   
+                    <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('GongyixingSwiper')"/></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="main-con3">
-          <ul>
-            <router-link to="/shici">
-              <li class="li1">
-                <div>
-                  <img src="~@/assets/images/index/icon1.png"/>
-                  <span>誓词教育</span>
-                </div>
-              </li>
-            </router-link>
-            <router-link to="/dangri">
-              <li class="li2">
-                <div>
-                  <img src="~@/assets/images/index/icon2.png"/>
-                  <span>主题党日</span>
-                </div>
-              </li>
-            </router-link>
-            <router-link to="/gongyi">
-              <li class="li3">
-                <div>
-                  <img src="~@/assets/images/index/icon3.png"/>
-                  <span>公益行</span>
-                </div>
-              </li>
-            </router-link>
-            <router-link to="/dangdaibiao">
-              <li class="li4">
-                <div>
-                  <img src="~@/assets/images/index/icon4.png"/>
-                  <span>党代表工作室</span>
-                </div>
-              </li>
-            </router-link>
-            <router-link to="/shuji">
-              <li class="li5">
-                <div>
-                  <img src="~@/assets/images/index/icon5.png"/>
-                  <span>书记工作室</span>
-                </div>
-              </li>
-            </router-link>
-            <router-link to="/shequ">
-              <li class="li6">
-                <div>
-                  <img src="~@/assets/images/index/icon6.png"/>
-                  <span>社区党校</span>
-                </div>
-              </li>
-            </router-link>
-            <router-link to="/yuyue">
-              <li class="li7">
-                <div>
-                  <img src="~@/assets/images/index/icon7.png"/>
-                  <span>活动预约</span>
-                </div>
-              </li>
-            </router-link>
-            <router-link to="/baoming">
-              <li class="li8">
-                <div>
-                  <img src="~@/assets/images/index/icon8.png"/>
-                  <span>活动报名</span>
-                </div>
-              </li>
-            </router-link>
-            <a @click="goToGeren()">
-              <li class="li9">
-                <div>
-                  <img src="~@/assets/images/index/icon9.png"/>
-                  <span>个人中心</span>
-                </div>
-              </li>
-            </a>
-          </ul>
+          <div class="left">
+            <ul>
+              <router-link to="/shici">
+                <li class="li1">
+                  <div>
+                    <img src="~@/assets/images/index/icon1.png"/>
+                    <span>誓词教育</span>
+                  </div>
+                </li>
+              </router-link>
+              <router-link to="/dangri">
+                <li class="li2">
+                  <div>
+                    <img src="~@/assets/images/index/icon2.png"/>
+                    <span>主题党日</span>
+                  </div>
+                </li>
+              </router-link>
+              <router-link to="/dangdaibiao">
+                <li class="li4">
+                  <div>
+                    <img src="~@/assets/images/index/icon4.png"/>
+                    <span>党代表工作室</span>
+                  </div>
+                </li>
+              </router-link>
+              <router-link to="/zichan">
+                <li class="li5">
+                  <div>
+                    <img src="~@/assets/images/index/lianzheng.png"/>
+                    <span>党风廉政</span>
+                  </div>
+                </li>
+              </router-link>
+            </ul>
+          </div>
+          <div class="right">
+            <ul>
+              <router-link to="/shuji">
+                <li class="li6">
+                  <div>
+                    <img src="~@/assets/images/index/zichan.png"/>
+                    <span>收购资产展示</span>
+                    <div class="lunbo">
+                      <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
+                      <swiper :options="swiperOption" ref="GongyixingSwiper" @slideChange="onSlideChange('GongyixingSwiper')">
+                        <swiper-slide v-for="(item,index) in gonyixingList" :key="index">
+                          <img class="img" :src="item.url" width="100%" height="100%" @click="$router.push('/fengcai')">
+                        </swiper-slide>
+                      </swiper>
+                      <div class="lb-page">
+                        <ul>
+                          <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('GongyixingSwiper')"/></li>
+                            <li v-for="(item,index) in gonyixingList" :class="{active: currenGongyixingIndex == index}" :key="index"><span></span></li>                   
+                          <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('GongyixingSwiper')"/></li>
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
+                </li>
+              </router-link>
+            </ul>
+          </div>
           <div class="text">
             <h3>联系我们</h3>
-            <p><span><i class="fa fa-map-marker"></i>春光村党建服务站：</span></p>
-            <p><span><i class="fa fa-bus"></i>周边公交：</span></p>
+            <p><span><i class="fa fa-map-marker"></i>普陀区桃浦镇春光村党建服务站：</span></p>
             <p><span><i class="fa fa-phone"></i>联系电话：</span></p>
           </div>
         </div>
@@ -264,6 +253,7 @@ export default {
           disableOnInteraction: false
         }
       },
+      bannerPost: {},
       qrcode: false,
       qrcodeWechat: false,
       weather: {},
@@ -331,6 +321,7 @@ export default {
   },
   async mounted() {
     handleLoading();
+    this.bannerPost = await request.getPost('home');
     this.partyStatusList = await request.getPosts({
       query: {
         category: "党建动态",

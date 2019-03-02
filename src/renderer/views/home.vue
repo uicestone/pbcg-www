@@ -206,7 +206,10 @@
       </div>
 
       <div class="pop" v-if="selectedStatus > -1">
-        <span class="back" @click="selectedStatus = -1"><i class="fa fa-chevron-left" aria-hidden="true"></i><font>返回</font></span>
+        <div class="header">
+          <span class="back" @click="selectedStatus = -1"><i class="fa fa-chevron-left" aria-hidden="true"></i><font>返回</font></span>
+          <h1>党建动态</h1>
+        </div>
         <div class="content">
           <h1 class="title">{{ selectedStatusData.title }}</h1>
           <div class="textDiv" v-html="selectedStatusData.content">

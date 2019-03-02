@@ -13,14 +13,6 @@ export default new Router({
       }
     },
     {
-      path: "/shequ",
-      name: "shequ",
-      component: require("@/views/shequ").default,
-      meta: {
-        homeName: "home"
-      }
-    },
-    {
       path: "/shici",
       name: "shici",
       component: require("@/views/shici").default,

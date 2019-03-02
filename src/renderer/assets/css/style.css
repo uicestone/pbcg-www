@@ -36,7 +36,7 @@ body {
   width: 100%;
   line-height: normal;
   -webkit-overflow-scrolling: touch;
-  background: #f2f2f3 !important;
+  /*background: #f2f2f3 !important;*/
 }
 
 img {
@@ -818,15 +818,15 @@ input {
 /************************************ 报到 *********************************************/
 
 .page .header {
-  height: 1.4rem;
-  background: #f7f7f7;
-  line-height: 1.4rem;
+  height: 1.6rem;
+  background: #e79b31;
+  line-height: 1.6rem;
   padding: 0 0.5rem;
 }
 
 .page .header a {
   font-size: 0.4rem;
-  color: #303031;
+  /*color: #303031;*/
   position: absolute;
   left: 0.5rem; top: 0;
 }
@@ -838,15 +838,22 @@ input {
   margin-right: 0.2rem;
 }
 
+.page .header h1 {
+  color: white;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
 .page .formDiv {
-  padding: 0.3rem;
+  padding: 0.6rem;
 }
 
 .page .formDiv .inputDiv {
   width: 100%;
   background: #fff;
   margin-bottom: 0.3rem;
-  border-radius: 0.1rem;
+  /*border-radius: 0.1rem;*/
+  border: 1px #9f9e9b solid;
   height: 1.5rem;
   line-height: 1.5rem;
 }
@@ -854,9 +861,11 @@ input {
 .page .formDiv .inputDiv>span {
   display: inline-block;
   width: 2.2rem;
-  font-size: 0.4rem;
+  font-size: 0.45rem;
+  font-weight: bold;
   text-align: right;
-  color: #151515;
+  color: #6a6967;
+  padding-right: 0.3rem;
 }
 
 .page .formDiv .inputDiv input {
@@ -866,7 +875,7 @@ input {
   float: left;
   padding-left: 0.2rem;
   margin-left: 0.2rem;
-  font-size: 0.4rem;
+  font-size: 0.45rem;
   border: 0;
   background: transparent;
 }
@@ -875,21 +884,21 @@ input {
   color: #909090;
   height: 1.5rem;
   line-height: 1.5rem;
-  font-size: 0.4rem;
+  font-size: 0.45rem;
 }
 
 .page input::-ms-input-placeholder {
   color: #909090;
   height: 1.5rem;
   line-height: 1.5rem;
-  font-size: 0.4rem;
+  font-size: 0.45rem;
 }
 
 .page input::-webkit-input-placeholder {
   color: #909090;
   height: 1.5rem;
   line-height: 1.5rem;
-  font-size: 0.4rem;
+  font-size: 0.45rem;
 }
 
 .page .formDiv {
@@ -913,10 +922,10 @@ input {
 }
 
 .page .formDiv .inputDiv>div span {
-  font-size: 0.4rem;
+  font-size: 0.45rem;
   float: left;
   display: inline-block;
-  width: 1.65rem;
+  width: 2rem;
   height: 0.9rem;
   line-height: 0.9rem;
   text-align: center;
@@ -929,10 +938,9 @@ input {
 }
 
 .page .formDiv .inputDiv>div span.check {
-  color: #b42628;
+  color: white;
   border: 0;
-  background: url(../images/sex-bg.png) no-repeat center center;
-  background-size: 100% 100%;
+  background: #e79b31;
 }
 
 .page .btnDiv {
@@ -942,21 +950,22 @@ input {
   width: 100%;
   background: #fff;
   text-align: center;
-  height: 1.6rem;
-  line-height: 1.6rem;
+  height: 1.8rem;
+  /*line-height: 2rem;*/
 }
 
 .page .btnDiv input {
-  width: 80%;
-  height: 1.2rem;
+  width: 90%;
+  height: 1.4rem;
   line-height: 1.2rem;
-  background: #b62628;
-  background-size: 100% 100%;
+  background: #e79b31;
   color: #fff;
   border: 0;
-  font-size: 0.4rem;
+  font-size: 0.6rem;
+  font-weight: bold;
   vertical-align: middle;
   margin-top: -0.25rem;
+  border-radius: 0.3rem;
 }
 
 /************************************ 月度菜单 *********************************************/

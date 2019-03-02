@@ -2662,264 +2662,184 @@ input {
   position: relative;
 }
 
-/************************************ 活动报名  *********************************************/
-
-.page10.fixed {
-  position: fixed;
-}
-
-.page10 .header {
-  height: 1.6rem;
-  background: #39a299;
-  line-height: 1.6rem;
-  color: #fff;
-  font-size: 0.57rem;
-  text-align: center;
-  padding: 0 0.5rem;
-}
-
-.page10 .header a {
-  font-size: 0.4rem;
-  color: #fff;
-  position: absolute;
-  left: 0.5rem; top: 0;
-}
-
-.page10 .header a i {
-  font-size: 0.5rem;
-  top: 0.05rem;
-  position: relative;
-}
-
-.page10 .header img {
-  display: inline-block;
-  width: 0.9rem;
-  position: relative;
-  top: 0.2rem;
-  margin-right: 0.2rem;
-}
-
-.page10 .list {
-  padding: 0.6rem;
-}
-
-.page10 .list ul li {
-  margin-top: 0.4rem;
-  height: 3rem;
-  overflow: hidden;
-  border: 1px solid #39a299;
-  background: #fff;
-}
-
-.page10 .list ul li .imgDiv {
-  width: 4.2rem;
-  height: 3rem;
-  border-right: 1px solid #39a299;
-  float: left;
-}
-
-.page10 .list ul li .imgDiv img {
+/******************** 群团活动 ********************/
+.page-quntuan .content {
   width: 100%;
+  height: auto;
+  padding: 0.54rem 0.6rem 0 0.6rem;
+}
+
+.page-quntuan .middle1 {
+  width: 100%;
+  height: auto;
+}
+
+.page-quntuan .tab-bar {
+  width: 100%;
+  height: 2.26rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+}
+
+.page-quntuan .tab-bar div {
+  width: 4.65rem;
   height: 100%;
+  color: #505050;
+  background: #cccccc;
+  line-height: 0.4rem;
+  text-align: center;
+  padding-top: 0.4rem;
+  position: relative;
+}
+
+.page-quntuan .tab-bar div img {
+  width: 0.04rem;
+  height: 0.28rem;
+  position: absolute;
+  left: 50%;
+  margin-left: -0.02rem;
+  bottom: -0.28rem;
+  opacity: 0;
+}
+
+.page-quntuan .tab-bar div i {
+  font-size: 0.8rem;
+}
+
+.page-quntuan .tab-bar div font {
+  font-size: 0.4rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.page-quntuan .tab-bar .curr {
+  background: #da5e2d;
+  color: #fff;
+}
+
+.page-quntuan .tab-bar .curr img {
+  opacity: 1;
+}
+
+.page-quntuan .lists {
+  width: 100%;
+  height: auto;
+  margin-top: 0.1rem;
+}
+
+.page-quntuan .list-box {
+  width: 100%;
+  height: auto;
+  margin-top: 0.3rem;
+  border: 0.02rem solid #d42f28;
+}
+
+.page-quntuan .lists {
+  width: 100%;
+  height: auto;
+}
+
+.page-quntuan .chunk2 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+
+.page-quntuan .chunk2 p {
+  width: 100%;
+  text-align: center;
+  font-size: 0.4rem;
+  padding-top: 0.2rem;
+  color: #363636;
+}
+
+.page-quntuan .chunk2 div {
+  width: 2.4rem;
+  height: auto;
+  margin: 0.3rem 0.39rem;
+}
+
+.page-quntuan .chunk2 div img {
+  height: 3rem;
+  width: 100%;
   object-fit: cover;
 }
 
-.page10 .list ul li .textDiv {
-  float: left;
-  font-size: 0.47rem;
-  color: #4d4d4e;
-  /*text-align: center;*/
-  width: 5.3rem;
-  padding: 0.3rem;
-  height: 100%;
+.page-quntuan .pop {
+
 }
 
-.page10 .list ul li .textDiv span {
-  vertical-align: middle;
-}
-
-.page10 .pop {
+.page-quntuan .pop .hint {
   width: 100%;
-  height: 91.6%;
-  position: fixed;
-  background: white;
-  top: 1.6rem;
-  z-index: 9;
-  /*padding: 0.5rem 0.5rem 0 0.5rem;*/
-  /*left: 50%;*/
-  /*margin-left: -46%;*/
+  height: auto;
 }
 
-.page10 .pop .back {
-  width: 3rem;
-  height: 1.2rem;
+.page-quntuan .userIfor {
+  width: 100%;
+  height: auto;
   display: flex;
   display: -webkit-flex;
-  align-items: center;
-  font-size: 0.6rem;
-  position: absolute;
-  top: 0.2rem;
-  left: 0.2rem;
+  justify-content: space-between;
+}
+
+.page-quntuan .userIfor img {
+  width: 3.46rem;
+  height: 4.6rem;
+  border: 2px solid #fff;
+}
+
+.page-quntuan .userIfor div {
+  width: 4.8rem;
+  height: auto;
+}
+
+.page-quntuan .userIfor div p {
+  width: 100%;
+  line-height: 0.6rem;
   color: #fff;
 }
 
-.page10 .pop .back font {
-  margin-left: 0.1rem;
-}
-
-.page10 .pop .hint {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  padding: 0.6rem;
-  padding-bottom: 10vh;
-}
-
-.page10 .pop .hint .name {
-  font-size: 0.81rem;
-  color: #000;
-  text-align: center;
-}
-
-.page10 .pop .hint p {
-  font-size: 0.43rem;
-  color: #000;
-  text-indent: 2em;
-  line-height: 0.8rem;
-  /*letter-spacing: 0.07rem;*/
-  margin-top: 0.5rem;
-  text-align: justify;
-}
-
-.page10 .pop .hint img {
-  width: 100%;
-  margin-top: 0.4rem;
-  border: 0.04rem solid #fff;
-}
-
-.page10 .attend {
-  margin: 0.2rem auto 0;
-  display: block;
-  background: #39a299;
-  width: 90%;
-  border: none;
-  height: 1.3rem;
-  color: white;
-  font-size: 0.65rem;
-  font-weight: bold;
-  /* margin-top: 0.2rem; */
-  border-radius: 0.2rem;
-  outline: none;
-  position: fixed;
-  bottom: 0.4rem;
-  left: 50%;
-  margin-left: -45%;
-}
-
-.page10 .attend:active {
-  background: #246761;
-}
-
-.page10 .attend-form {
-  height: 90%;
-  background: #f7f8f8;
-  padding: .6rem;
-}
-
-.page10 .attend-form .item {
-  border: #ddd 1px solid;
-  padding: 0.3rem;
-  background: white;
-  font-size: 0.45rem;
-  margin-bottom: 0.25rem;
-}
-
-.page10 .attend-form label {
-  font-weight: bold;
-  margin-right: 0.3rem;
-  width: 22%;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.page10 .attend-form input, select, textarea {
-  outline: none;
-  font-family: inherit;
-  width: 62%;
-  background: none;
-  border: none;
-  vertical-align: middle;
-}
-
-.page10 .attend-form select {
-  margin-left: -0.11rem;
-}
-
-.page10 .attend-form ::placeholder {
-  color: #c8c8c8;
-}
-
-.page10 .modal {
-  background: rgba(127, 127, 127, 0.5);
-  height: 100%;
-  top: 0;
-}
-
-.page10 .modal .message {
-  background: #39a299;
-  position: absolute;
-  top: 50%;
-  height: 2.7rem;
-  margin-top: -2rem;
-  left: 5vw;
-  width: 90vw;
-  padding: 0.5rem;
-  font-size: 0.65rem;
-  color: white;
-  font-weight: bold;
-  border-radius: 0.4rem;
-  text-align: center;
-  line-height: 1.3;
-}
-
-/********************* 活动预约 *********************/
-
-.page-yuyue {
-  background: white;
-  height: 100%;
-}
-
-.page-yuyue .header {
-  height: 1.6rem;
-  background: #51a7dc;
-  line-height: 1.6rem;
-  color: #fff;
-  font-size: 0.57rem;
-  text-align: center;
-  padding: 0 0.5rem;
-}
-
-.page-yuyue .header a {
+.page-quntuan .userIfor .nameBox {
   font-size: 0.4rem;
-  color: #fff;
-  position: absolute;
-  z-index: 0;
-  left: 0.5rem; top: 0;
 }
 
-.page-yuyue .header a i {
+.page-quntuan .userIfor .sex {
+  font-size: 0.3rem;
+}
+
+.page-quntuan .userIfor .post {
+  font-size: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.page-quntuan .userIfor .name {
+  font-size: 0.6rem;
+}
+
+.page-quntuan .hint .infor {
+  font-size: 0.36rem;
+  color: #fff;
+  line-height: 0.5rem;
+  text-indent: 2em;
+  margin-top: 0.5rem;
+}
+
+.page-quntuan .header a.back {
+  font-size: 0.4rem;
+  color: #4d4d4e;
+  position: fixed;
+  left: 0.5rem;
+  top: 0.3rem;
+  z-index: 10;
+}
+
+.page-quntuan .header a i {
   font-size: 0.5rem;
   top: 0.05rem;
   position: relative;
-}
-
-.page-yuyue .header img {
-  display: inline-block;
-  width: 0.9rem;
-  position: relative;
-  top: 0.2rem;
-  margin-right: 0.2rem;
 }
 
 /***********************************

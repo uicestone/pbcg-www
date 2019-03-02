@@ -103,7 +103,7 @@
           </div>
           <div class="fr quntuan">
             <div class="qtzs">
-              <div class="qtzs-title" @click="$router.push('/fengcai')"><img src="~@/assets/images/index/fengcai.png"/><span>群团展示</span></div>
+              <div class="qtzs-title" @click="$router.push('/quntuan')"><img src="~@/assets/images/index/fengcai.png"/><span>群团展示</span></div>
               <div class="lunbo">
                 <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
                 <swiper :options="swiperOption" ref="GongyixingSwiper" @slideChange="onSlideChange('GongyixingSwiper')">

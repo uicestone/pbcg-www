@@ -21,6 +21,14 @@ export default new Router({
       }
     },
     {
+      path: "/quntuan",
+      name: "quntuan",
+      component: require("@/views/quntuan").default,
+      meta: {
+        homeName: "home"
+      }
+    },
+    {
       path: "/baodao",
       name: "baodao",
       component: require("@/views/baodao").default,

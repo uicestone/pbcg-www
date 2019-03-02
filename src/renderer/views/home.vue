@@ -149,7 +149,7 @@
                   </div>
                 </li>
               </router-link>
-              <router-link to="/zichan">
+              <router-link to="/dangfeng">
                 <li class="li5">
                   <div>
                     <img src="~@/assets/images/index/lianzheng.png"/>

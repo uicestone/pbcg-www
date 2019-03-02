@@ -4,19 +4,19 @@ import * as request from "../utils/request";
 
 export default {
   data() {
-
     return {
-      zhibuList: [],
-      selectedDetail: null
+      dangfengList: [],
+      selectedDetail: null,
+      highLighted: null
     };
   },
   computed: {
   },
   async mounted() {
     handleLoading();
-    this.zhibuList = await request.getPosts({
+    this.dangfengList = await request.getPosts({
       query: {
-        category: "党支部工作室",
+        category: "党风廉政",
         limit: -1,
         order: 'asc'
       }
@@ -35,23 +35,19 @@ export default {
 
 <template>
   	<body>
-		<div class="main page6">
+		<div class="main page-dangfeng">
 			<div class="header">
 				<a  @click.prevent="back" class="fl back"><i class="fa fa-chevron-left"></i> 返回</a>
-				<span><img src="~@/assets/images/index/icon4.png"/>党支部工作室</span>
+				<span><img src="~@/assets/images/index/lianzheng.png"/>党风廉政</span>
 			</div>
       <div class="list">
         <ul v-if="!selectedDetail">
-          <li v-for="(item, key) in zhibuList" @click="selectedDetail = item" :key="key">
-            <span class="thumbnail"><img :src="item.posterUrl"></span>
-            <span class="title">
-              {{item.title}}
-              <p class="date">{{ item.date }}</p>
-            </span>
+          <li v-for="(item, key) in dangfengList" @click="selectedDetail = item; highLighted = item.id" :key="key" :class="{active:item.id==highLighted}">
+            {{item.title}}
           </li>
         </ul>
         <div class="pop" v-if="selectedDetail">
-          <div class="title">{{selectedDetail.title}}</div>
+          <!-- <div class="title">{{selectedDetail.title}}</div> -->
           <div class="content" v-html="selectedDetail.content"></div>
         </div>
       </div>
@@ -74,29 +70,50 @@ export default {
 </template>
 
 <style lang="less">
-.page6 {
+.page-dangfeng {
+  .header {
+    height: 1.6rem;
+    background: #e70417;
+    line-height: 1.6rem;
+    color: #fff;
+    font-size: 0.57rem;
+    text-align: center;
+    padding: 0 0.5rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    a {
+      font-size: 0.4rem;
+      color: #fff;
+      position: absolute;
+      left: 0.5rem; top: 0;
+      i {
+        font-size: 0.5rem;
+        top: 0.05rem;
+        position: relative;
+      }
+    }
+    img {
+      display: inline-block;
+      width: 0.7rem;
+      position: relative;
+      vertical-align: middle;
+      margin-right: 0.2rem;
+    }
+  }
+
   .list {
     padding: 1.6rem 0.3rem 0;
     >ul>li {
-      display: flex;
-      flex-wrap: wrap;
       margin: 0.3rem 0;
-      border: 0.03rem solid #ddd;
-      .thumbnail {
-        flex-basis: 30%;
-        max-width: 30%;
-        img {
-          max-width: 100%;
-        }
-      }
-      .title {
-        flex-basis: 70%;
-        padding: 0.25rem 0.5rem;
-        font-size: 0.4rem;
-        font-weight: bold;
-        .date {
-          font-size: 0.354rem;
-        }
+      padding: 0.35rem 0.5rem;
+      font-size: 0.43rem;
+      font-weight: bold;
+      text-align: center;
+      background: #d4d5d0;
+      &.active {
+        color: white;
+        background: #e70417;
       }
     }
     .pop {
@@ -112,13 +129,15 @@ export default {
       }
       .content {
         margin: 0 0.5rem 0.5rem;
-        font-size: 0.2rem;
+        font-size: 0.4rem;
+        line-height: 1.5;
         img {
           border: 0.03rem solid #ea544e;
           width: 100%;
         }
-        h3 {
-          font-size: 0.3rem;
+        h1,h2,h3,h4,h5,h6 {
+          font-size: 0.5rem;
+          margin-bottom: 0.2rem;
         }
         ul {
           margin-left: 1em;

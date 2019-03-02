@@ -53,6 +53,14 @@ export default new Router({
       }
     },
     {
+      path: "/dangfeng",
+      name: "dangfeng",
+      component: require("@/views/dangfeng").default,
+      meta: {
+        homeName: "home"
+      }
+    },
+    {
       path: "/dangri",
       name: "dangri",
       component: require("@/views/dangri").default,

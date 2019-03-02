@@ -106,16 +106,16 @@
               <div class="qtzs-title" @click="$router.push('/quntuan')"><img src="~@/assets/images/index/fengcai.png"/><span>群团展示</span></div>
               <div class="lunbo">
                 <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
-                <swiper :options="swiperOption" ref="GongyixingSwiper" @slideChange="onSlideChange('GongyixingSwiper')">
-                  <swiper-slide v-for="(item,index) in gonyixingList" :key="index">
-                    <img class="img" :src="item.url" width="100%" height="100%" @click="$router.push('/fengcai')">
+                <swiper :options="swiperOption" ref="quntuanSwiper" @slideChange="onSlideChange('quntuanSwiper')">
+                  <swiper-slide v-for="(item,index) in quntuanList" :key="index">
+                    <img class="img" :src="item.posterUrl" width="100%" height="100%" @click="$router.push('/quntuan')">
                   </swiper-slide>
                 </swiper>
                 <div class="lb-page">
                   <ul>
-                    <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('GongyixingSwiper')"/></li>
-                      <li v-for="(item,index) in gonyixingList" :class="{active: currenGongyixingIndex == index}" :key="index"><span></span></li>                   
-                    <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('GongyixingSwiper')"/></li>
+                    <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('quntuanSwiper')"/></li>
+                      <li v-for="(item,index) in quntuanList" :class="{active: quntuanSwiperIndex == index}" :key="index"><span></span></li>                   
+                    <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('quntuanSwiper')"/></li>
                   </ul>
                 </div>
               </div>
@@ -168,16 +168,16 @@
                     <span>收购资产展示</span>
                     <div class="lunbo">
                       <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
-                      <swiper :options="swiperOption" ref="GongyixingSwiper" @slideChange="onSlideChange('GongyixingSwiper')">
-                        <swiper-slide v-for="(item,index) in gonyixingList" :key="index">
+                      <swiper :options="swiperOption" ref="zichanSwiper" @slideChange="onSlideChange('zichanSwiper')">
+                        <swiper-slide v-for="(item,index) in zichanList" :key="index">
                           <img class="img" :src="item.url" width="100%" height="100%" @click="$router.push('/fengcai')">
                         </swiper-slide>
                       </swiper>
                       <div class="lb-page">
                         <ul>
-                          <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('GongyixingSwiper')"/></li>
-                            <li v-for="(item,index) in gonyixingList" :class="{active: currenGongyixingIndex == index}" :key="index"><span></span></li>                   
-                          <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('GongyixingSwiper')"/></li>
+                          <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('zichanSwiper')"/></li>
+                            <li v-for="(item,index) in zichanList" :class="{active: zichanSwiperIndex == index}" :key="index"><span></span></li>                   
+                          <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('zichanSwiper')"/></li>
                         </ul>
                       </div>
                     </div>
@@ -267,9 +267,11 @@ export default {
       partyStatusTotalPages: null,
       monthMenu: [],
       currentMonth: moment().month()+1,
-      gonyixingList: [],
+      quntuanList: [],
+      zichanList: [],
       selectedStatus: -1,
-      currenGongyixingIndex: 0
+      quntuanSwiperIndex: 0,
+      zichanSwiperIndex: 0
     };
   },
   computed: {
@@ -299,7 +301,7 @@ export default {
       this.$refs[swiper].swiper.slideNext();
     },
     onSlideChange(swiper) {
-      this.currenGongyixingIndex = this.$refs[swiper].swiper.activeIndex;
+      this[swiper+'Index'] = this.$refs[swiper].swiper.activeIndex;
     },
     goToSignIn() {
       if (!this.isWeb) {
@@ -347,9 +349,9 @@ export default {
     this.monthMenu = cachedMonthMenu.sort((a, b) => {
       return moment(a.date) < moment(b.date) ? -1 : 1;
     });
-    this.gonyixingList = await request.getAttachments({
+    this.quntuanList = await request.getPosts({
       query: {
-        category: "公益行",
+        category: "群团活动",
         limit: 4
       }
     });

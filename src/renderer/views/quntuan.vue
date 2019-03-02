@@ -42,7 +42,7 @@ export default {
       if (this.selectedEvent) {
         this.selectedEvent = null;
       } else {
-        $router.go(-1);
+        this.$router.go(-1);
       }
     }
   }

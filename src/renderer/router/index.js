@@ -45,9 +45,9 @@ export default new Router({
       }
     },
     {
-      path: "/dangdaibiao",
-      name: "dangdaibiao",
-      component: require("@/views/dangdaibiao").default,
+      path: "/zhibu",
+      name: "zhibu",
+      component: require("@/views/zhibu").default,
       meta: {
         homeName: "home"
       }

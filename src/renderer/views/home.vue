@@ -141,11 +141,11 @@
                   </div>
                 </li>
               </router-link>
-              <router-link to="/dangdaibiao">
+              <router-link to="/zhibu">
                 <li class="li4">
                   <div>
                     <img src="~@/assets/images/index/icon4.png"/>
-                    <span>党代表工作室</span>
+                    <span>党支部工作室</span>
                   </div>
                 </li>
               </router-link>

@@ -1,16 +1,9 @@
-
 <script>
 import { handleLoading } from "../utils/utils";
 import * as request from "../utils/request";
 
 export default {
   data() {
-    
-    const zhutidangriList = {};
-    this.$parent.towns.forEach(town => {
-      zhutidangriList[town] = [];
-    });
-
     return {
       swiperOption: {
         spaceBetween: 30,
@@ -20,55 +13,27 @@ export default {
           disableOnInteraction: false
         }
       },
-      zhutidangriRaw: [],
-      zhutidangriEntity: {},
-      zhutidangriList,
-      selectedList: "",
-      selectedDetail: ""
+      zhutidangriList: [],
+      selectedDetail: null
     };
   },
   computed: {
-    selectListData() {
-      const selectEntity = this.zhutidangriList[this.selectedList] || [];
-      return selectEntity.map(entity => this.zhutidangriEntity[entity]);
-    },
-    selectDetailData() {
-      return this.selectListData[this.selectedDetail] || {};
-    }
   },
   async mounted() {
     handleLoading();
-    this.zhutidangriRaw = await request.getAttachments({
+    this.zhutidangriList = await request.getPosts({
       query: {
         category: "主题党日",
         limit: -1
       }
     });
-    this.zhutidangriRaw.forEach(i => {
-      const { id, categories } = i;
-      const category = categories.find(i => i !== "主题党日");
-      if (!this.zhutidangriList[category]) {
-        this.$set(this.zhutidangriList, category, []);
-      }
-      this.zhutidangriList[category].push(id);
-      this.zhutidangriEntity[id] = i;
-    });
   },
   methods: {
     back() {
-      if (this.selectedList) {
-        return (this.selectedList = "");
+      if (this.selectedDetail) {
+        return (this.selectedDetail = null);
       }
       this.$router.go(-1);
-    },
-    prevSwiper(swiper) {
-      this.$refs[swiper].swiper.slidePrev();
-    },
-    nextSwiper(swiper) {
-      this.$refs[swiper].swiper.slideNext();
-    },
-    onSlideChange(swiper) {
-      this.selectedDetail = this.$refs[swiper].swiper.activeIndex;
     }
   }
 };
@@ -77,53 +42,26 @@ export default {
 <template>
   	<body>
 		<div class="main page8">
+      <img src="~@/assets/images/banner-dangri.png" width="100%">
 			<div class="header">
 				<a  @click="back" class="fl back"><i class="fa fa-chevron-left"></i> 返回</a>
-				<span><img src="~@/assets/images/index/icon2.png"/>主题党日</span>
+				<img src="">
 			</div>
 			<div class="list">
-				<div class="list-text">
-					<ul v-if="!selectedList">
-						<li v-for="(item, key) in zhutidangriList" @click="selectedList = key" :key="key">
-							{{key}}
-						</li>
-					</ul>
-					<!-- <ul v-if="selectedList">
-						<li v-for="(item, key) in selectListData" @click="selectedDetail = item.id">
-							{{item.title}}
-						</li>
-					</ul> -->
-					<!-- <div class="list-page">
-						<ul>
-							<li><img src="~@/assets/images/index/left-arrow.png"/></li>
-							<li class="active"><span></span></li>
-							<li><span></span></li>
-							<li><span></span></li>
-							<li><span></span></li>
-							<li><img src="~@/assets/images/index/right-arrow.png"/></li>
-						</ul>
-					</div> -->
-				</div>
+				<ul v-if="!selectedDetail">
+					<li v-for="(item, key) in zhutidangriList" @click="selectedDetail = item" :key="key">
+            <span class="thumbnail"><img :src="item.posterUrl"></span>
+            <span class="title">
+              {{item.title}}
+              <p class="date">{{ item.date }}</p>
+            </span>
+					</li>
+				</ul>
+        <div class="pop" v-if="selectedDetail">
+          <div class="title">{{selectedDetail.title}}</div>
+          <div class="content" v-html="selectedDetail.content"></div>
+        </div>
 			</div>
-			<div class="pop" v-if="selectedList">
-				<span class="back"  @click="selectedList=null "><i class="fa fa-chevron-left" aria-hidden="true"></i><font>返回</font></span>
-          	  	<div class="title">{{selectedList}}</div>
-          	  	<div class="content">
-      	   	     	<div class="roll">
-					    <div class="swiper-container swiper-no-swiping swiper-containerA">
-					        <swiper :options="swiperOption" ref="swiper" @slideChange="onSlideChange('swiper')">
-										<swiper-slide v-for="(item,index) in selectListData" :key="index">
-												<img class="img" :src="item.url" width="100%" height="100%">    
-      	   	      			<p>{{item.title}}</p>												      
-										</swiper-slide>
-								</swiper>
-					    </div>
-				        <!-- Add Pagination -->
-				        <div class="swiper-button-next" @click="nextSwiper('swiper')"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
-				        <div class="swiper-button-prev" @click="prevSwiper('swiper')"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>								    
-      	   	  </div>
-          	   </div>
-          	</div>
                       
 		</div>
 		<!--等待-->
@@ -142,3 +80,54 @@ export default {
 		</div>				
 	</body>
 </template>
+
+<style lang="less">
+.page8 {
+  .list {
+    padding: 0 0.3rem;
+    li {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0.3rem 0;
+      border: 0.03rem solid #ddd;
+      .thumbnail {
+        flex-basis: 30%;
+        max-width: 30%;
+        img {
+          max-width: 100%;
+        }
+      }
+      .title {
+        flex-basis: 70%;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.4rem;
+        font-weight: bold;
+        .date {
+          font-size: 0.354rem;
+        }
+      }
+    }
+    .pop {
+      margin: 0.3rem 0;
+      border: 0.05rem solid #de7341;
+      .title {
+        text-align: center;
+        font-size: 0.42rem;
+        font-weight: bold;
+        margin: 0.2rem 0;
+      }
+      .content {
+        margin: 0 0.5rem 0.5rem;
+        img {
+          border-style: none;
+          display: inline-block;
+          border: 0.05rem solid #de7341;
+          margin: 0.08rem !important;
+          height: 3rem;
+          width: 4.36rem;
+        }
+      }
+    }
+  }
+}
+</style>

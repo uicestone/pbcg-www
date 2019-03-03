@@ -99,7 +99,7 @@ export default {
                 </div>
                 <div v-if="currentTag == 3"  class="chunk chunk3">
                   <ul v-if="!selectedZoujin" class="post-list">
-                    <li v-for="(item, key) in zichanList" @click="selectedZoujin = item" :key="key">
+                    <li v-for="(item, key) in zoujinList" @click="selectedZoujin = item" :key="key">
                       <span class="thumbnail"><img :src="item.posterUrl"></span>
                       <span class="title">
                         {{item.title}}
@@ -215,14 +215,15 @@ export default {
       table {
         font-size: 0.25rem;
         font-weight: bold;
-        width: 100%;
+        width: 100% !important;
         tr {
           td {
             background: #ececec;
             color: black;
             padding: 0.05rem 0.5rem;
+            width: auto !important;
             &:first-child {
-              width: 30%;
+              width: 30% !important;
               background: #b52f2c;
               color: white;
             }

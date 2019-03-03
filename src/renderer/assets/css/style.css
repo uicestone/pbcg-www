@@ -509,6 +509,10 @@ input {
   object-fit: contain;
 }
 
+.page3 .main-con3 ul li div>.img {
+  padding-top: 0;
+}
+
 .page3 .main-con3 ul a[disabled] li {
   opacity: 0.7;
 }
@@ -567,10 +571,12 @@ input {
 .page3 .main-con3 ul li.li6>div {
   background: #b52f2c;
   height: 4.6rem;
+  padding: 0 0.2rem;
 }
 
 .page3 .main-con3 ul li.li6 .lunbo {
-  margin-top: 0.25rem;
+  margin-top: 0.1rem;
+  height: 2.6rem;
 }
 
 .page3 .main-con3 ul li.li7 {
@@ -631,6 +637,8 @@ input {
 .page3 .lunbo .img {
   margin: 0.2rem 0;
   width: 100%;
+  height: 1.65rem;
+  object-fit: cover;
 }
 
 .page3 .lb-page {

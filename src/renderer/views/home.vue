@@ -160,31 +160,31 @@
             </ul>
           </div>
           <div class="right">
-            <ul>
-              <router-link to="/zichan">
-                <li class="li6">
-                  <div>
+            <ul>              
+              <li class="li6">
+                <div>
+                  <div @click="$router.push('/zichan')">
                     <img src="~@/assets/images/index/zichan.png"/>
                     <span>收购资产展示</span>
-                    <div class="lunbo">
-                      <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
-                      <swiper :options="swiperOption" ref="zichanSwiper" @slideChange="onSlideChange('zichanSwiper')">
-                        <swiper-slide v-for="(item,index) in zichanList" :key="index">
-                          <img class="img" :src="item.url" width="100%" height="100%" @click="$router.push('/fengcai')">
-                        </swiper-slide>
-                      </swiper>
-                      <div class="lb-page">
-                        <ul>
-                          <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('zichanSwiper')"/></li>
-                            <li v-for="(item,index) in zichanList" :class="{active: zichanSwiperIndex == index}" :key="index"><span></span></li>                   
-                          <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('zichanSwiper')"/></li>
-                        </ul>
-                      </div>
-                    </div>
-
                   </div>
-                </li>
-              </router-link>
+                  <div class="lunbo">
+                    <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
+                    <swiper :options="swiperOption" ref="zichanSwiper" @slideChange="onSlideChange('zichanSwiper')">
+                      <swiper-slide v-for="(item,index) in zichanList" :key="index">
+                        <img class="img" :src="item.posterUrl" width="100%" height="100%" @click="$router.push('/zichan')">
+                      </swiper-slide>
+                    </swiper>
+                    <div class="lb-page">
+                      <ul>
+                        <li><img src="~@/assets/images/index/left-arrow1.png" @click="prevSwiper('zichanSwiper')"/></li>
+                          <li v-for="(item,index) in zichanList" :class="{active: zichanSwiperIndex == index}" :key="index"><span></span></li>                   
+                        <li><img src="~@/assets/images/index/right-arrow1.png" @click="nextSwiper('zichanSwiper')"/></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+              </li>
             </ul>
           </div>
           <div class="text">
@@ -352,6 +352,12 @@ export default {
     this.quntuanList = await request.getPosts({
       query: {
         category: "群团活动",
+        limit: 4
+      }
+    });
+    this.zichanList = await request.getPosts({
+      query: {
+        category: "资产展示",
         limit: 4
       }
     });

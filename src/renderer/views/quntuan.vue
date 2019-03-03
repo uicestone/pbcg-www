@@ -7,6 +7,8 @@ export default {
     return {
       intro: {},
       eventList: [],
+      eventPage: 1,
+      eventTotalPages: 1,
       selectedEvent: null,
       currentPlayIndex: -1,
       currentTag: 1,
@@ -32,19 +34,12 @@ export default {
     };
   },
   computed: {
-    currentPlayer(){
-      return this.$refs.audio;
-    }
+    
   },
   async mounted() {
     handleLoading();
     this.intro = await request.getPost('群团概念');
-    this.eventList = await request.getPosts({
-      query: {
-        category: "群团活动",
-        limit: 3
-      }
-    });
+    this.getEventList(true);
   },
   methods: {
     back() {
@@ -67,6 +62,30 @@ export default {
       const imgTags = content.match(/<img .*?src=".*?".*?>/g);
       if (!imgTags) return [];      
       return imgTags.map(img => img.match(/<img .*?src="(.*?)".*?>/)).map(m => m[1]);
+    },
+    async getEventList(getTotalPages = false) {
+      this.eventList = await request.getPosts({
+        query: {
+          category: "群团活动",
+          limit: 3,
+          page: this.eventPage
+        },
+        options: {
+          cacheable: !getTotalPages
+        }
+      });
+
+      if (getTotalPages) {
+        this.eventTotalPages = this.eventList._totalPages;
+      }
+    },
+    nextEventPage() {
+      this.eventPage++;
+      this.getEventList();
+    },
+    prevEventPage() {
+      this.eventPage--;
+      this.getEventList();
     }
   }
 };
@@ -95,15 +114,24 @@ export default {
             <div class="list-box">
               <div class="lists">
                 <div v-if="currentTag == 1" class="chunk chunk1" v-html="intro.content"></div>
-                <ul v-if="currentTag == 3 && !selectedEvent"  class="chunk chunk3">
-                  <li v-for="(item, index) in eventList" @click="selectedEvent=item">
-                    <span class="thumbnail"><img :src="item.posterUrl"></span>
-                    <span class="title">
-                      {{item.title}}
-                      <p class="date">{{ item.date }}</p>
-                    </span>
-                  </li>
-                </ul>
+                <div v-if="currentTag == 3 && !selectedEvent"  class="chunk chunk3">
+                  <ul>
+                    <li v-for="(item, index) in eventList" @click="selectedEvent=item">
+                      <span class="thumbnail"><img :src="item.posterUrl"></span>
+                      <span class="title">
+                        {{item.title}}
+                        <p class="date">{{ item.date }}</p>
+                      </span>
+                    </li>
+                  </ul>
+                  <div class="lb-page">
+                    <ul>
+                      <li><img src="~@/assets/images/index/left-arrow.png" @click="prevEventPage()"/></li>
+                        <li v-for="index in eventTotalPages" v-show="index < 10" :class="{active: detailSwiperIndex == index}" :key="index"><span></span></li>                   
+                      <li><img src="~@/assets/images/index/right-arrow.png" @click="nextEventPage()"/></li>
+                    </ul>
+                  </div>
+                </div>
                 <div class="pop" v-if="selectedEvent">
                   <div class="lunbo">
                     <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
@@ -155,15 +183,21 @@ export default {
       }
       dt {
         flex-basis: 20%;
+        max-width: 20%;
         display: flex;
+        border-right: 0.05rem solid #da5e2d;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
         img {
           width: 1.4rem;
           object-fit: contain;
+          margin: 0;
         }
-        border-right: 0.05rem solid #da5e2d;
       }
       dd {
         flex-basis: 80%;
+        max-width: 80%;
         padding: 0 0.5rem;
         h1 {
           font-size: 0.50rem;

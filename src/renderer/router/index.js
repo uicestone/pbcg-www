@@ -77,6 +77,13 @@ export default new Router({
       }
     },
     {
+      path: "/zichan",
+      name: "zichan",
+      component: require("@/views/zichan").default,
+      meta: {
+        homeName: "home"
+      }
+    },{
       path: "/",
       name: "/",
       component: require("@/views/home").default

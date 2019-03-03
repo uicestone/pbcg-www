@@ -1,7 +1,7 @@
 <template>
   <body>
     <div class="main page3">
-      <a @click="back" class="fl back"><i class="fa fa-chevron-left"></i> 返回</a>
+      <!-- <a @click="back" class="fl back"><i class="fa fa-chevron-left"></i> 返回</a> -->
       <div class="topDiv">
         <img :src="bannerPost.posterUrl" width="100%">
         <div class="top-text">
@@ -161,7 +161,7 @@
           </div>
           <div class="right">
             <ul>
-              <router-link to="/shuji">
+              <router-link to="/zichan">
                 <li class="li6">
                   <div>
                     <img src="~@/assets/images/index/zichan.png"/>

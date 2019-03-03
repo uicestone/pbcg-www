@@ -2565,6 +2565,105 @@ input {
   position: relative;
 }
 
+/********************************* 资产展示 **********************************/
+
+.page-zichan .header a i {
+  font-size: 0.5rem;
+  top: 0.05rem;
+  position: relative;
+}
+
+.page-zichan .header a.back {
+  font-size: 0.4rem;
+  color: #4d4d4e;
+  position: fixed;
+  left: 0.5rem;
+  top: 0.3rem;
+  z-index: 10;
+}
+
+.page-zichan .back font {
+  margin-left: 0.1rem;
+  font-size: 0.4rem;
+}
+
+.page-zichan .content {
+  width: 100%;
+  height: auto;
+  padding: 0.54rem 0.6rem 0 0.6rem;
+}
+
+.page-zichan .middle1 {
+  width: 100%;
+  height: auto;
+}
+
+.page-zichan .tab-bar {
+  width: 100%;
+  height: 2.26rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+}
+
+.page-zichan .tab-bar div {
+  width: 3.05rem;
+  height: 100%;
+  color: #505050;
+  background: #cccccc;
+  line-height: 0.4rem;
+  text-align: center;
+  padding-top: 0.4rem;
+  position: relative;
+}
+
+.page-zichan .tab-bar div img {
+  width: 0.04rem;
+  height: 0.28rem;
+  position: absolute;
+  left: 50%;
+  margin-left: -0.02rem;
+  bottom: -0.28rem;
+  opacity: 0;
+}
+
+.page-zichan .tab-bar div i {
+  font-size: 0.8rem;
+}
+
+.page-zichan .tab-bar div font {
+  font-size: 0.4rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.page-zichan .tab-bar .curr {
+  background: #b52f2c;
+  color: #fff;
+}
+
+.page-zichan .tab-bar .curr img {
+  opacity: 1;
+}
+
+.page-zichan .lists {
+  width: 100%;
+  height: auto;
+  margin-top: 0.1rem;
+}
+
+.page-zichan .list-box {
+  width: 100%;
+  height: auto;
+  margin-top: 0.28rem;
+  border: 0.02rem solid #b52f2c;
+}
+
+.page-zichan .lists {
+  width: 100%;
+  height: auto;
+}
+
 /***********************************
 /* =WordPress Core
 -------------------------------------------------------------- */

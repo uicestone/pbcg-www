@@ -11,9 +11,17 @@ export default {
       selectedZichan: null,
       zoujinList: [],
       selectedZoujin: null,
-      musicList: [],
-      currentPlayIndex: -1,
-      currentTag: 1
+      currentTag: 1,
+      swiperOption: {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false
+        }
+      },
+      zichanSwiperIndex: 0,
+      zoujinSwiperIndex: 0
     };
   },
   computed: {
@@ -41,15 +49,19 @@ export default {
     });
   },
   methods: {
-    playAudio(index) {
-      if (index == this.currentPlayIndex && !this.currentPlayer.paused) {
-        this.currentPlayer.pause();
-        return;
-      }
-      this.currentPlayIndex = index;
-      let data = this.musicList[index];
-      this.currentPlayer.src = data.url;
-      this.currentPlayer.play();
+    prevSwiper(swiper) {
+      this.$refs[swiper].swiper.slidePrev();
+    },
+    nextSwiper(swiper) {
+      this.$refs[swiper].swiper.slideNext();
+    },
+    onSlideChange(swiper) {
+      this[swiper+'Index'] = this.$refs[swiper].swiper.activeIndex;
+    },
+    contentImages(content) {
+      const imgTags = content.match(/<img .*?src=".*?".*?>/g);
+      if (!imgTags) return [];      
+      return imgTags.map(img => img.match(/<img .*?src="(.*?)".*?>/)).map(m => m[1]);
     }
   }
 };
@@ -94,7 +106,24 @@ export default {
                   </ul>
                   <div v-if="selectedZichan" class="detail">
                     <h2 class="title">{{ selectedZichan.title }}</h2>
-                    <div class="content" v-html="selectedZichan.content"></div>
+                    <div class="content">
+                      <div class="lunbo">
+                        <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
+                        <swiper :options="swiperOption" ref="zichanSwiper" @slideChange="onSlideChange('zichanSwiper')">
+                          <swiper-slide v-for="(url, index) in contentImages(selectedZichan.content)" :key="index">
+                            <img class="img" :src="url" width="100%" height="100%">
+                          </swiper-slide>
+                        </swiper>
+                        <div class="lb-page">
+                          <ul>
+                            <li><img src="~@/assets/images/index/left-arrow.png" @click="prevSwiper('zichanSwiper')"/></li>
+                              <li v-for="(url,index) in contentImages(selectedZichan.content)" :class="{active: zichanSwiperIndex == index}" v-show="index < 10" :key="index"><span></span></li>                   
+                            <li><img src="~@/assets/images/index/right-arrow.png" @click="nextSwiper('zichanSwiper')"/></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div v-html="selectedZichan.content.match(/<table[\s\S]*?<\/table>/)[0]"></div>
+                    </div>
                   </div>    
                 </div>
                 <div v-if="currentTag == 3"  class="chunk chunk3">
@@ -109,7 +138,21 @@ export default {
                   </ul>
                   <div v-if="selectedZoujin" class="detail">
                     <h2 class="title">{{ selectedZoujin.title }}</h2>
-                    <div class="content" v-html="selectedZoujin.content"></div>
+                    <div class="content lunbo">
+                      <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
+                      <swiper :options="swiperOption" ref="zoujinSwiper" @slideChange="onSlideChange('zoujinSwiper')">
+                        <swiper-slide v-for="(url, index) in contentImages(selectedZoujin.content)" :key="index">
+                          <img class="img" :src="url" width="100%" height="100%">
+                        </swiper-slide>
+                      </swiper>
+                      <div class="lb-page">
+                        <ul>
+                          <li><img src="~@/assets/images/index/left-arrow.png" @click="prevSwiper('zoujinSwiper')"/></li>
+                            <li v-for="(url, index) in contentImages(selectedZoujin.content)" v-show="index < 10" :class="{active: zoujinSwiperIndex == index}" :key="index"><span></span></li>                   
+                          <li><img src="~@/assets/images/index/right-arrow.png" @click="nextSwiper('zoujinSwiper')"/></li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>    
                 </div>
               </div>
@@ -167,6 +210,17 @@ export default {
     }
     p {
       text-indent: 2em;
+    }
+  }
+  .chunk2 {
+    .swiper-slide {
+      img {
+        height: 4rem;
+        object-fit: cover;
+      }
+    }
+    .lb-page {
+      margin-bottom: 0.3rem;
     }
   }
   ul.post-list {

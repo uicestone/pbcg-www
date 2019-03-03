@@ -2672,6 +2672,55 @@ input {
   height: auto;
 }
 
+/* Common */
+.lb-page {
+  overflow: hidden;
+  margin: 0 auto;
+  overflow: hidden;
+  margin: 0.3rem auto -0.3rem;
+  /*position: absolute;*/
+  width: 100%;
+  text-align: center;
+}
+
+.lb-page ul {
+  overflow: hidden;
+  display: inline-block;
+  width: auto;
+  padding-bottom: 0 !important;
+}
+
+.lb-page ul li {
+  float: left;
+  height: 0.29rem;
+  margin-left: 0.2rem;
+  margin-bottom: 0 !important;
+  display: list-item;
+  width: auto;
+}
+
+.lb-page ul li:first-child {
+  margin-left: 0;
+}
+
+.lb-page ul li img {
+  width: 0.29rem;
+}
+
+.lb-page ul li span {
+  width: 0.1rem;
+  height: 0.1rem;
+  display: block;
+  background: #dcdcdb;
+  border-radius: 50%;
+  position: relative;
+  top: 0.12rem;
+}
+
+.lb-page ul li.active span {
+  background: #942320;
+}
+
 /***********************************
 /* =WordPress Core
 -------------------------------------------------------------- */

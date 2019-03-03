@@ -19,7 +19,16 @@ export default {
         "领誓人致共勉词，与全体党员共勉；",
         "奏《国际歌》；",
         "主持人宣布仪式结束。"
-      ]
+      ],
+      swiperOption: {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false
+        }
+      },
+      detailSwiperIndex: 0
     };
   },
   computed: {
@@ -44,6 +53,20 @@ export default {
       } else {
         this.$router.go(-1);
       }
+    },
+    prevSwiper(swiper) {
+      this.$refs[swiper].swiper.slidePrev();
+    },
+    nextSwiper(swiper) {
+      this.$refs[swiper].swiper.slideNext();
+    },
+    onSlideChange(swiper) {
+      this.detailSwiperIndex = this.$refs[swiper].swiper.activeIndex;
+    },
+    contentImages(content) {
+      const imgTags = content.match(/<img .*?src=".*?".*?>/g);
+      if (!imgTags) return [];      
+      return imgTags.map(img => img.match(/<img .*?src="(.*?)".*?>/)).map(m => m[1]);
     }
   }
 };
@@ -82,7 +105,21 @@ export default {
                   </li>
                 </ul>
                 <div class="pop" v-if="selectedEvent">
-                  <div v-html="selectedEvent.content"></div>
+                  <div class="lunbo">
+                    <!-- <img src="~@/assets/images/index/gyx-img.jpg"/> -->
+                    <swiper :options="swiperOption" ref="quntuanSwiper" @slideChange="onSlideChange('quntuanSwiper')">
+                      <swiper-slide v-for="(url, index) in contentImages(selectedEvent.content)" :key="index">
+                        <img class="img" :src="url" width="100%" height="100%">
+                      </swiper-slide>
+                    </swiper>
+                    <div class="lb-page">
+                      <ul>
+                        <li><img src="~@/assets/images/index/left-arrow.png" @click="prevSwiper('quntuanSwiper')"/></li>
+                          <li v-for="(url,index) in contentImages(selectedEvent.content)" v-show="index < 10" :class="{active: detailSwiperIndex == index}" :key="index"><span></span></li>                   
+                        <li><img src="~@/assets/images/index/right-arrow.png" @click="nextSwiper('quntuanSwiper')"/></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

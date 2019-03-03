@@ -10,7 +10,6 @@ export default {
       eventPage: 1,
       eventTotalPages: 1,
       selectedEvent: null,
-      currentPlayIndex: -1,
       currentTag: 1,
       flowText: [
         "正衣冠，列队有序进入宣誓厅（室）；",
@@ -35,6 +34,13 @@ export default {
   },
   computed: {
     
+  },
+  watch: {
+    currentTag(v) {
+      if (v !== 3) {
+        this.selectedEvent = null;
+      }
+    }
   },
   async mounted() {
     handleLoading();
@@ -80,10 +86,12 @@ export default {
       }
     },
     nextEventPage() {
+      if (this.eventPage >= this.eventTotalPages) return;
       this.eventPage++;
       this.getEventList();
     },
     prevEventPage() {
+      if (this.eventPage <= 1) return;
       this.eventPage--;
       this.getEventList();
     }
@@ -126,9 +134,9 @@ export default {
                   </ul>
                   <div class="lb-page">
                     <ul>
-                      <li><img src="~@/assets/images/index/left-arrow.png" @click="prevEventPage()"/></li>
-                        <li v-for="index in eventTotalPages" v-show="index < 10" :class="{active: detailSwiperIndex == index}" :key="index"><span></span></li>                   
-                      <li><img src="~@/assets/images/index/right-arrow.png" @click="nextEventPage()"/></li>
+                      <li :class="{disabled:eventPage<=1}"><img src="~@/assets/images/index/left-arrow.png" @click="prevEventPage()"/></li>
+                        <li v-for="index in eventTotalPages" :class="{active: eventPage === index}" :key="index"><span></span></li>                   
+                      <li :class="{disabled:eventPage>=eventTotalPages}"><img src="~@/assets/images/index/right-arrow.png" @click="nextEventPage()"/></li>
                     </ul>
                   </div>
                 </div>
@@ -214,7 +222,7 @@ export default {
   }
   .chunk3 {
     padding: 0 0.3rem;
-    li {
+    >ul>li {
       display: flex;
       flex-wrap: wrap;
       margin: 0.3rem 0;
@@ -223,7 +231,10 @@ export default {
         flex-basis: 30%;
         max-width: 30%;
         img {
-          max-width: 100%;
+          width: 100%;
+          height: 1.8rem;
+          object-fit: cover;
+          object-position: top;
         }
       }
       .title {
@@ -235,6 +246,9 @@ export default {
           font-size: 0.354rem;
         }
       }
+    }
+    .lb-page {
+      margin-bottom: 0.3rem;
     }
   }
   .pop {

@@ -2699,6 +2699,10 @@ input {
   width: auto;
 }
 
+.lb-page ul li.disabled {
+  opacity: 0.3;
+}
+
 .lb-page ul li:first-child {
   margin-left: 0;
 }

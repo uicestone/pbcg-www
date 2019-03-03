@@ -8,8 +8,12 @@ export default {
       intro: {},
       currentSelectPeople: -1,
       zichanList: [],
+      zichanPage: 1,
+      zichanTotalPages: 1,
       selectedZichan: null,
       zoujinList: [],
+      zoujinPage: 1,
+      zoujinTotalPages: 1,
       selectedZoujin: null,
       currentTag: 1,
       swiperOption: {
@@ -32,23 +36,32 @@ export default {
       return this.$refs.audio;
     }
   },
+  watch: {
+    currentTag(v) {
+      if (v !== 2){
+        this.selectedZichan = null;
+      }
+      if (v !== 3) {
+        this.selectedZoujin = null;
+      }
+    }
+  },
   async mounted() {
     handleLoading();
     this.intro = await request.getPost('收购初衷');
-    this.zichanList = await request.getPosts({
-      query: {
-        category: "资产展示",
-        limit: 3
-      }
-    });
-    this.zoujinList = await request.getPosts({
-      query: {
-        category: "走近资产",
-        limit: 3
-      }
-    });
+    this.getZichanList(true);
+    this.getZoujinList(true);
   },
   methods: {
+    back() {
+      if (this.selectedZichan) {
+        this.selectedZichan = null;
+      } else if (this.selectedZoujin) {
+        this.selectedZoujin = null;
+      } else {
+        $router.go(-1);
+      }
+    },
     prevSwiper(swiper) {
       this.$refs[swiper].swiper.slidePrev();
     },
@@ -62,6 +75,58 @@ export default {
       const imgTags = content.match(/<img .*?src=".*?".*?>/g);
       if (!imgTags) return [];      
       return imgTags.map(img => img.match(/<img .*?src="(.*?)".*?>/)).map(m => m[1]);
+    },
+    async getZichanList(getTotalPages = false) {
+      this.zichanList = await request.getPosts({
+        query: {
+          category: "资产展示",
+          limit: 3,
+          page: this.zichanPage
+        },
+        options: {
+          cacheable: !getTotalPages
+        }
+      });
+
+      if (getTotalPages) {
+        this.zichanTotalPages = this.zichanList._totalPages;
+      }
+    },
+    nextZichanPage() {
+      if (this.zichanPage >= this.zichanTotalPages) return;
+      this.zichanPage++;
+      this.getZichanList();
+    },
+    prevZichanPage() {
+      if (this.zichanPage <= 1) return;
+      this.zichanPage--;
+      this.getZichanList();
+    },
+    async getZoujinList(getTotalPages = false) {
+      this.zoujinList = await request.getPosts({
+        query: {
+          category: "走近资产",
+          limit: 3,
+          page: this.zoujinPage
+        },
+        options: {
+          cacheable: !getTotalPages
+        }
+      });
+
+      if (getTotalPages) {
+        this.zoujinTotalPages = this.zoujinList._totalPages;
+      }
+    },
+    nextZoujinPage() {
+      if (this.zoujinPage >= this.zoujinTotalPages) return;
+      this.zoujinPage++;
+      this.getZoujinList();
+    },
+    prevZoujinPage() {
+      if (this.zoujinPage <= 1) return;
+      this.zoujinPage--;
+      this.getZoujinList();
     }
   }
 };
@@ -72,7 +137,7 @@ export default {
     <div class="main page-zichan" >
       <img src="~@/assets/images/banner-zichan.png" width="100%">
       <div class="header">
-        <a  @click="$router.go(-1)" class="back"><i class="fa fa-chevron-left"></i> 返回</a>
+        <a  @click="back()" class="back"><i class="fa fa-chevron-left"></i> 返回</a>
       </div>
       <div class="content">
         <div class="middle">
@@ -104,6 +169,13 @@ export default {
                       </span>
                     </li>
                   </ul>
+                  <div class="lb-page" v-if="!selectedZichan">
+                    <ul>
+                      <li :class="{disabled:zichanPage<=1}"><img src="~@/assets/images/index/left-arrow.png" @click="prevZichanPage()"/></li>
+                        <li v-for="index in zichanTotalPages" :class="{active: zichanPage === index}" :key="index"><span></span></li>                   
+                      <li :class="{disabled:zichanPage>=zichanTotalPages}"><img src="~@/assets/images/index/right-arrow.png" @click="nextZichanPage()"/></li>
+                    </ul>
+                  </div>
                   <div v-if="selectedZichan" class="detail">
                     <h2 class="title">{{ selectedZichan.title }}</h2>
                     <div class="content">
@@ -136,6 +208,13 @@ export default {
                       </span>
                     </li>
                   </ul>
+                  <div class="lb-page" v-if="!selectedZoujin">
+                    <ul>
+                      <li :class="{disabled:zichanPage<=1}"><img src="~@/assets/images/index/left-arrow.png" @click="prevZichanPage()"/></li>
+                        <li v-for="index in zichanTotalPages" :class="{active: zichanPage === index}" :key="index"><span></span></li>                   
+                      <li :class="{disabled:zichanPage>=zichanTotalPages}"><img src="~@/assets/images/index/right-arrow.png" @click="nextZichanPage()"/></li>
+                    </ul>
+                  </div>
                   <div v-if="selectedZoujin" class="detail">
                     <h2 class="title">{{ selectedZoujin.title }}</h2>
                     <div class="content lunbo">
@@ -160,25 +239,6 @@ export default {
           </div>
       </div>
             
-            
-      <div class="pop" v-if="currentSelectPeople > -1">
-        <span class="back" @click="currentSelectPeople = -1" ><i class="fa fa-chevron-left" aria-hidden="true"></i><font>返回</font></span>
-            <div class="hint">
-            <div class="userIfor">
-              <img :src="currentSelectPeopleData.posterUrl">
-              <div>
-                <p class="nameBox">
-                  <font class="name">
-                    {{currentSelectPeopleData.title}}
-                  </font>
-                    <!-- /<font class="sex">女</font> --> -->
-                  </p>
-                <p class="post" v-html="currentSelectPeopleData.content"></p>
-              </div>
-            </div>
-            <!-- <p class="infor">义勇军进行曲义勇军进行曲义勇军进行曲义勇军进行曲义勇军进行曲义勇军进行曲义勇军进行曲</p> -->
-            </div>
-      </div>
     </div>
     <!--等待-->
     <div class="pre_load" >
@@ -219,6 +279,11 @@ export default {
         object-fit: cover;
       }
     }
+    .lb-page {
+      margin-bottom: 0.3rem;
+    }
+  }
+  .chunk3 {
     .lb-page {
       margin-bottom: 0.3rem;
     }

@@ -13,7 +13,9 @@ export default {
           disableOnInteraction: false
         }
       },
-      zhutidangriList: [],
+      dangriList: [],
+      dangriPage: 1,
+      dangriTotalPages: 1,
       selectedDetail: null
     };
   },
@@ -21,12 +23,7 @@ export default {
   },
   async mounted() {
     handleLoading();
-    this.zhutidangriList = await request.getPosts({
-      query: {
-        category: "主题党日",
-        limit: -1
-      }
-    });
+    this.getDangriList(true);
   },
   methods: {
     back() {
@@ -34,6 +31,32 @@ export default {
         return (this.selectedDetail = null);
       }
       this.$router.go(-1);
+    },
+    async getDangriList(getTotalPages = false) {
+      this.dangriList = await request.getPosts({
+        query: {
+          category: "主题党日",
+          limit: 5,
+          page: this.dangriPage
+        },
+        options: {
+          cacheable: !getTotalPages
+        }
+      });
+
+      if (getTotalPages) {
+        this.dangriTotalPages = this.dangriList._totalPages;
+      }
+    },
+    nextDangriPage() {
+      if (this.dangriPage >= this.dangriTotalPages) return;
+      this.dangriPage++;
+      this.getDangriList();
+    },
+    prevDangriPage() {
+      if (this.dangriPage <= 1) return;
+      this.dangriPage--;
+      this.getDangriList();
     }
   }
 };
@@ -49,7 +72,7 @@ export default {
 			</div>
 			<div class="list">
 				<ul v-if="!selectedDetail">
-					<li v-for="(item, key) in zhutidangriList" @click="selectedDetail = item" :key="key">
+					<li v-for="(item, key) in dangriList" @click="selectedDetail = item" :key="key">
             <span class="thumbnail"><img :src="item.posterUrl"></span>
             <span class="title">
               {{item.title}}
@@ -57,6 +80,13 @@ export default {
             </span>
 					</li>
 				</ul>
+        <div class="lb-page" v-if="!selectedDetail">
+          <ul>
+            <li :class="{disabled:dangriPage<=1}"><img src="~@/assets/images/index/left-arrow.png" @click="prevDangriPage()"/></li>
+              <li v-for="index in dangriTotalPages" :class="{active: dangriPage === index}" :key="index"><span></span></li>                   
+            <li :class="{disabled:dangriPage>=dangriTotalPages}"><img src="~@/assets/images/index/right-arrow.png" @click="nextDangriPage()"/></li>
+          </ul>
+        </div>
         <div class="pop" v-if="selectedDetail">
           <div class="title">{{selectedDetail.title}}</div>
           <div class="content" v-html="selectedDetail.content"></div>
@@ -85,7 +115,7 @@ export default {
 .page8 {
   .list {
     padding: 0 0.3rem;
-    li {
+    >ul>li {
       display: flex;
       flex-wrap: wrap;
       margin: 0.3rem 0;

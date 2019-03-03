@@ -89,7 +89,7 @@
                   <div class="fl text">
                     <div class="title">{{item.title}}</div>
                     <div class="tag-time">
-                      <span class="fl">{{item.town}}</span>
+                      <span class="fl">春光村</span>
                       <span class="fr">{{item.date}}</span>
                     </div>
                   </div>

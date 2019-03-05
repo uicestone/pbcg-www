@@ -189,8 +189,8 @@
           </div>
           <div class="text">
             <h3>联系我们</h3>
-            <p><span><i class="fa fa-map-marker"></i>普陀区桃浦镇春光村党建服务站：</span></p>
-            <p><span><i class="fa fa-phone"></i>联系电话：</span></p>
+            <p><span><i class="fa fa-map-marker"></i>普陀区桃浦镇春光村党建服务站：</span> {{ bannerPost.address }}</p>
+            <p><span><i class="fa fa-phone"></i>联系电话：</span> {{ bannerPost.phone }}</p>
           </div>
         </div>
         <Modal

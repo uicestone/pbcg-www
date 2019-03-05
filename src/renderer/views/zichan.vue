@@ -59,7 +59,7 @@ export default {
       } else if (this.selectedZoujin) {
         this.selectedZoujin = null;
       } else {
-        $router.go(-1);
+        this.$router.go(-1);
       }
     },
     prevSwiper(swiper) {
@@ -210,9 +210,9 @@ export default {
                   </ul>
                   <div class="lb-page" v-if="!selectedZoujin">
                     <ul>
-                      <li :class="{disabled:zichanPage<=1}"><img src="~@/assets/images/index/left-arrow.png" @click="prevZichanPage()"/></li>
-                        <li v-for="index in zichanTotalPages" :class="{active: zichanPage === index}" :key="index"><span></span></li>                   
-                      <li :class="{disabled:zichanPage>=zichanTotalPages}"><img src="~@/assets/images/index/right-arrow.png" @click="nextZichanPage()"/></li>
+                      <li :class="{disabled:zoujinPage<=1}"><img src="~@/assets/images/index/left-arrow.png" @click="prevZoujinPage()"/></li>
+                        <li v-for="index in zoujinTotalPages" :class="{active: zoujinPage === index}" :key="index"><span></span></li>                   
+                      <li :class="{disabled:zoujinPage>=zoujinTotalPages}"><img src="~@/assets/images/index/right-arrow.png" @click="nextZoujinPage()"/></li>
                     </ul>
                   </div>
                   <div v-if="selectedZoujin" class="detail">

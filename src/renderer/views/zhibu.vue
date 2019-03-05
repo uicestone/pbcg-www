@@ -21,6 +21,11 @@ export default {
         order: 'asc'
       }
     });
+    this.zhibuList.forEach(zhibu => {
+      zhibu.content = zhibu.content.replace(/<li>地址/g,'<li><i class="fa fa-map-marker"></i>地址');
+      zhibu.content = zhibu.content.replace(/<li>联系方式/g,'<li><i class="fa fa-phone"></i>联系方式');
+      zhibu.content = zhibu.content.replace(/<li>支部书记/g,'<li><i class="fa fa-user"></i>支部书记');
+    });
   },
   methods: {
     back() {
@@ -117,11 +122,22 @@ export default {
           border: 0.03rem solid #ea544e;
           width: 100%;
         }
+        h2 {
+          margin-top: 0.2rem;
+          font-size: 0.45rem;
+        }
         h3 {
-          font-size: 0.3rem;
+          margin-top: 0.2rem;
+          font-size: 0.4rem;
         }
         ul {
-          margin-left: 1em;
+          font-size: 0.3rem;
+          margin-left: 0.5em;
+          li {
+            i {
+              margin-right: 0.5em;
+            }
+          }
         }
       }
     }

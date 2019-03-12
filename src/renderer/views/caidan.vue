@@ -99,42 +99,6 @@ export default {
 							<!-- <h3>“联西的六靠精神”书记工作室导师讲堂</h3> -->
 						</div>
 						<div class="activity" v-html="item.content"></div>
-						<!-- <div class="activity">
-							<div class="activity1">
-								<div class="title">
-									<span><i class="fa fa-file-text-o"></i></span>活动简介
-								</div>
-								<p>
-									邀请安亭镇书记工作室导师、联西村党总支书记唐祝平为辖区青年党员、后备干部
-									生动讲述联西村三十年的发展历程以及标志性事件、人物 、故事等，通过参观党建服务站以及交流分享
-									，让党员更直观的了解改革开放以来新农村发生的巨大变化和历史缩影，激励党员积极发挥先锋模范作用。
-								</p>
-							</div>
-							<div class="activity2">
-								<div class="title">
-									<span><i class="fa fa-clock-o"></i></span>活动时间
-								</div>
-								<p>
-									5月18日 13:30-15:00
-								</p>
-							</div>
-							<div class="activity3">
-								<div class="title">
-									<span><i class="fa fa-map-marker"></i></span>活动地点
-								</div>
-								<p>
-									联西村党建服务站（联西路28号）
-								</p>
-							</div>
-							<div class="activity4">
-								<div class="title">
-									<span><i class="fa fa-phone"></i></span>联系方式
-								</div>
-								<p>
-									陈艳：59561186
-								</p>
-							</div>
-						</div> -->
 					</div>
 				</div>
 			</div>

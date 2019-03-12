@@ -189,7 +189,7 @@
           </div>
           <div class="text">
             <h3>联系我们</h3>
-            <p><span><i class="fa fa-map-marker"></i>普陀区桃浦镇春光村党建服务站：</span> {{ bannerPost.address }}</p>
+            <p><span><i class="fa fa-map-marker"></i>{{ bannerPost.title }}：</span> {{ bannerPost.address }}</p>
             <p><span><i class="fa fa-phone"></i>联系电话：</span> {{ bannerPost.phone }}</p>
           </div>
         </div>
@@ -197,11 +197,6 @@
           v-model="qrcode"
           class-name="vertical-center-modal">
           <img src="~@/assets/images/qrcode_baodao.png" width="100%" height="100%"/>
-        </Modal>
-        <Modal
-          v-model="qrcodeWechat"
-          class-name="vertical-center-modal">
-          <img src="~@/assets/images/qrcode_wechat.jpg" width="100%" height="100%"/>
         </Modal>
       </div>
 
@@ -258,7 +253,6 @@ export default {
       },
       bannerPost: {},
       qrcode: false,
-      qrcodeWechat: false,
       weather: {},
       signedInMemberCount: 0,
       date: {},
@@ -308,13 +302,6 @@ export default {
         this.qrcode = true;
       } else {
         this.$router.push('/baodao')
-      }
-    },
-    goToGeren() {
-      if (!this.isWeb) {
-        this.qrcodeWechat = true;
-      } else {
-        this.$router.push('/geren')
       }
     },
     wating() {

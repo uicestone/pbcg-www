@@ -45,13 +45,13 @@ async function configWeixin() {
   wx.config({jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'], ...args});
   wx.ready(function() {
     wx.onMenuShareTimeline({
-      title: '春光村党建服务站',
+      title: '春光村党群服务站',
       link: 'http://pbjd-www.hbird.com.cn',
       imgUrl: 'http://pbjd-www.hbird.com.cn/static/images/logo.png',
       success(data) {}
     });
     wx.onMenuShareAppMessage({ 
-      title: '春光村党建服务站',
+      title: '春光村党群服务站',
       desc: '',
       link: 'http://pbjd-www.hbird.com.cn',
       imgUrl: 'http://pbjd-www.hbird.com.cn/static/images/logo.png',
